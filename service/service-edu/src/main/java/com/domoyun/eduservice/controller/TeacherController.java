@@ -1,11 +1,14 @@
 package com.domoyun.eduservice.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.domoyun.commonutils.R;
 import com.domoyun.eduservice.entity.Teacher;
+import com.domoyun.eduservice.entity.VO.TeacherQuery;
 import com.domoyun.eduservice.service.TeacherService;
 import io.swagger.annotations.*;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -62,6 +65,49 @@ public class TeacherController {
         pageMap.put("rows",records);
         return R.ok().data(pageMap);
     }
+
+    @ApiOperation("带条件分页讲师列表查询")
+    @PostMapping("/{page}/{limit}")
+    public R pageList(@ApiParam(name = "page",value = "当前页码",required = true)
+                      @PathVariable Long page,
+                      @ApiParam(name = "limit",value = "每页记录数",required = true)
+                      @PathVariable Long limit,
+                      @RequestBody TeacherQuery teacherQuery){
+        Page<Teacher> pageParam = new Page<>(page,limit);
+        QueryWrapper<Teacher> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByAsc("sort");
+
+        String name = teacherQuery.getName();
+        Integer level = teacherQuery.getLevel();
+        String begin = teacherQuery.getBegin();
+        String end = teacherQuery.getEnd();
+
+        if (!StringUtils.isEmpty(name)) {
+            queryWrapper.like("name", name);
+        }
+
+        if (!StringUtils.isEmpty(String.valueOf(level)) ) {
+            queryWrapper.eq("level", level);
+        }
+
+        if (!StringUtils.isEmpty(begin)) {
+            queryWrapper.ge("gmt_create", begin);
+        }
+
+        if (!StringUtils.isEmpty(end)) {
+            queryWrapper.le("gmt_create", end);
+        }
+
+        teacherService.page(pageParam,queryWrapper);
+        List<Teacher> records = pageParam.getRecords();
+        long total = pageParam.getTotal();
+
+        Map<String,Object> pageMap = new HashMap();
+        pageMap.put("total",total);
+        pageMap.put("rows",records);
+        return R.ok().data(pageMap);
+    }
+
 
 }
 
