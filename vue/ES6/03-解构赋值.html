@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //传统赋值
+    let a=1,b=2,c=3;
+    console.log(a,b,c);
+    
+    //数组解构赋值
+    let [x,y,z] = [1,2,3];
+    console.log(x,y,z);
+
+    //传统对象赋值
+    let user = {"name":"zhangsan","age":18};
+    let name1 = user.name; 
+    let age1 = user.age; 
+    console.log(name1,age1);
+
+    //对象解构赋值
+    let {name,age} = user;
+    console.log(name,age);
+
+    </script>
+</body>
+</html>

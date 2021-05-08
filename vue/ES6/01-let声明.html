@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //var 不严谨 没有作用域概念
+    //let有作用域概念
+    {
+        var a = 100;
+        let b = 200;
+    }
+    console.log(a);
+    // console.log(b);
+
+    //var可以重复申明
+    //let不可以重复申明
+
+    var c = 300;
+    var c = 400;
+    console.log(c);
+
+    //let d = 500;
+    let d = 600;
+    console.log(d);
+
+    //var定义变量申明提升
+    //let定义变量不会申明提升
+    console.log(f);
+    var f = 600;
+    console.log(e);
+    let e = 600;
+    
+
+
+    </script>
+</body>
+</html>
