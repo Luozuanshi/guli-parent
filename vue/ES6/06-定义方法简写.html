@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        //自定义函数
+        function f1(){
+            console.log("自定义函数1");
+        }
+
+        let f2 = function(){
+            console.log("自定义函数2");
+        }
+        
+        f1();
+        f2();
+
+        // 传统自定义方法，依赖于某个对象叫方法
+        const person1 = {
+            sayHi:function(){
+                console.log("Hi")
+            }
+        }
+        person1.sayHi();//"Hi"
+
+
+        // ES6
+        const person2 = {
+            sayHi(){
+                console.log("Hi")
+            }
+        }
+        person2.sayHi()  //"Hi"
+    </script>
+</body>
+</html>

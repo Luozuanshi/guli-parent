@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //直接对象变量名赋值地址拷贝 user1 和user2是同一个
+        let user = {"name":"zhangsan","age":18,"hobby":"basketball"};
+        let user1 = user;
+        console.log(user1);
+
+        //开辟一块新内存空间对象值拷贝
+        let user2 = {...user};
+        console.log(user2);
+
+        //两个对象合并 前提是属性值不一样 ,如果一样后面覆盖前面的
+        let name = {name:"lisi",color:"red"};
+        let age = {age:"25",color:"green"};
+        let user3 = {...name,...age};
+        console.log(user3);
+
+        //两个对象合并 前提是属性值不一样 ,如果一样后面覆盖前面的
+        let user4 = {...user,...user3}
+        console.log(user4);
+
+    </script>
+</body>
+</html>
