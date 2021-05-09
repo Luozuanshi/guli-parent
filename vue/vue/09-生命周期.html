@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+       
+        <h1 id="h1">{{message}}</h1>
+        <p> <button v-on:click="updateInfo()">更新</button> </p>
+
+    </div>
+    <script src="vue.min.js"></script>
+    <script>
+        let app = new Vue({
+            el:'#app',
+            data:{
+               message:'床前明月光' 
+            },
+            methods: {
+                showInfo(){
+                    console.log('showInfo.......')
+                },
+                updateInfo(){
+                    console.log('updateInfo.......')
+                    this.message = '玻璃好上霜'
+                }
+            },
+            //创建时四个钩子方法
+            beforeCreate () {//第一个钩子方法，属性、方法均未创建
+                console.log('beforeCreate.......')
+                //console.log(this.message)
+                //this.showInfo()
+
+            },
+            created () {//第二个钩子方法，属性、方法均已创建
+                console.log('created.......')
+                console.log(this.message)
+                this.showInfo()
+
+            },
+            beforeMount () {//第三个钩子方法，视图模板已创建、页面未渲染
+                console.log('beforeMount.......') 
+                console.log(`视图模板：${this.message}`)
+                let text = document.getElementById('h1').innerText
+                console.log(`页面：${text}`)
+            },
+            mounted () {//第四个钩子方法，视图模板已创建、页面已渲染
+                console.log('mounted.......') 
+                console.log(`视图模板：${this.message}`)
+                let text = document.getElementById('h1').innerText
+                console.log(`页面：${text}`)
+            },
+            //更新时两个钩子方法
+            beforeUpdate () {
+                console.log('beforeUpdate.......') 
+                console.log(`视图模板：${this.message}`)
+                let text = document.getElementById('h1').innerText
+                console.log(`页面：${text}`)
+            },
+            updated () {
+                console.log('updated.......') 
+                console.log(`视图模板：${this.message}`)
+                let text = document.getElementById('h1').innerText
+                console.log(`页面：${text}`)
+            }
+        })
+    </script>
+</body>
+</html>

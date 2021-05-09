@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 列表渲染 -->
+        |<ul>
+            <li v-for="color in colors">{{color}}</li>
+        </ul>
+        <!-- 表格渲染 -->
+        <table>
+            <tr v-for="(user,index) in userList">
+                <td>{{index}}</td>
+                <td>{{user.id}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.age}}</td>
+            </tr>
+        </table>
+
+        <!-- 智能表单 一个对象 -->
+        <form action="submit">
+            <div v-for="(value,key,index) in user">
+                {{index}} - {{key}}:<input type="text"  v-model="value">
+            </div>
+        </form>
+    </div>
+
+    <script src="vue.min.js"></script>
+    <script>
+    let vue = new Vue({
+        el: "#app",
+        data: {
+            colors:['red','green','yellow'],
+            userList:[{
+                id:1,
+                name:"zhang3",
+                age:20
+            },{
+                id:2,
+                name:"li4",
+                age:30
+            },{
+                id:3,
+                name:"wang5",
+                age:40
+            }],
+            user:{name:"saaa",age:30}
+        }
+    })
+    </script> 
+</body>
+</html>

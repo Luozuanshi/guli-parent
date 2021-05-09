@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- v-bind:value只能进行单向的数据渲染 -->
+        <input type="text" v-bind:value="searchMap.keyWord">
+        <!-- v-model 可以进行双向的数据绑定  -->
+        <input type="text" v-model="searchMap.keyWord">
+        <button v-on:click="search()">查询</button>
+
+        <p>您要查询的是：{{searchMap.keyWord}}</p>
+        <p><a v-bind:href="result.site" target="_blank">{{result.title}}</a></p>
+    </div>
+
+    <script src="vue.min.js"></script>
+    <script>
+    let vue = new Vue({
+        el: "#app",
+        data: {
+            searchMap:{
+                keyWord: '多魔云栖'
+            },
+            //查询结果
+            result: { 
+                 "title":"多魔云栖",
+                 "site":"http://domoyun.com"
+                }
+        },
+        methods:{
+            search(){
+                console.log('search')
+                //TODO
+            }
+        }
+    })
+    </script> 
+</body>
+</html>

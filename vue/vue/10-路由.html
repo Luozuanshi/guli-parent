@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1> Hello App!</h1>
+        <p>
+                <!-- 使用 router-link 组件来导航. -->
+                <!-- 通过传入 `to` 属性指定链接. -->
+                <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
+                <router-link to="/">首页</router-link>
+                <router-link to="/student">会员管理</router-link>
+                <router-link to="/teacher">讲师管理</router-link>
+            </p>
+            <!-- 路由出口 -->
+            <!-- 路由匹配到的组件将渲染在这里 -->
+            <router-view></router-view>
+
+    </div>
+    <script src="vue.min.js"></script>
+    <script src="vue-router.min.js"></script>
+    <script>
+        //1定义（路由）组件
+        //可以从其他文件import进来
+        const Welcome = { template: '<div>欢迎</div>' }
+        const Student = { template: '<div>student list</div>' }
+        const Teacher = { template: '<div>teacher list</div>' }
+
+        //2 制定路由规则
+        //映射关系
+        const routes =[
+            {path:'/',component:Welcome},
+            {path:'/student',component:Student},
+            {path:'/teacher',component:Teacher}
+        ]
+
+        //3创建路由对象
+        const router = new VueRouter({
+            routes
+        })
+
+        //给vue添加路由
+        let app = new Vue({
+            el:'#app',
+            data:{
+                
+            },
+            router
+        })
+    </script>
+</body>
+</html>
