@@ -27,6 +27,7 @@ import java.util.Map;
 @Api(tags = "讲师管理")
 @RestController
 @RequestMapping("/eduservice/teacher")
+@CrossOrigin
 public class TeacherController {
 
     @Autowired
@@ -67,13 +68,13 @@ public class TeacherController {
     }
 
     @ApiOperation("带条件分页讲师列表查询")
-    @PostMapping("/{page}/{limit}")
-    public R pageList(@ApiParam(name = "page",value = "当前页码",required = true)
-                      @PathVariable Long page,
+    @PostMapping("/{pageNo}/{limit}")
+    public R pageList(@ApiParam(name = "pageNo",value = "当前页码",required = true)
+                      @PathVariable Long pageNo,
                       @ApiParam(name = "limit",value = "每页记录数",required = true)
                       @PathVariable Long limit,
                       @RequestBody TeacherQuery teacherQuery){
-        Page<Teacher> pageParam = new Page<>(page,limit);
+        Page<Teacher> pageParam = new Page<>(pageNo,limit);
         QueryWrapper<Teacher> queryWrapper = new QueryWrapper<>();
         queryWrapper.orderByAsc("sort");
 
