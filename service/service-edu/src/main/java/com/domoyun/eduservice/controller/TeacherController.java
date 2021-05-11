@@ -87,7 +87,7 @@ public class TeacherController {
             queryWrapper.like("name", name);
         }
 
-        if (!StringUtils.isEmpty(String.valueOf(level)) ) {
+        if (!(level==null) ) {
             queryWrapper.eq("level", level);
         }
 
