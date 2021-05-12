@@ -10,11 +10,19 @@ export default {
       data: teacherQuery // json格式传输
     })
   },
-  //删除讲师
+  // 删除讲师
   removeById(id) {
     return request({
       url: `/eduservice/teacher/${id}`,
       method: 'delete'
+    })
+  },
+  // 新增讲师
+  saveData(teacher) {
+    return request({
+      url: `/eduservice/teacher`,
+      method: 'post',
+      data: teacher // json格式传输
     })
   }
 
