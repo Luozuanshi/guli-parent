@@ -37,24 +37,55 @@ import teacher from "@/api/teacher";
 export default {
   data() {
     return {
-        teacher:{},
-        saveBtnDisabled:false
+        id:'',
+      teacher: {},
+      saveBtnDisabled: false
     };
   },
-  created (){
-
-  },
-  methods: {
-      saveOrUpdate(){
-          teacher.saveData(this.teacher).then(res=>{
-               this.$message({
-                    type: "success",
-                    message: "添加成功!"
-                });
+  created() {
+      //如果 路由url中带有id回显讲师信息
+      if(this.$route.params.id){
+          this.id = this.$route.params.id;
+          console.log(this.id);
+          teacher.getById(this.id).then(res=>{
+                this.teacher = res.data.item
           })
-          // 跳转页面
-          this.$router.push({path:'/teacher/list'})
       }
   },
+  methods: {
+    saveOrUpdate() {
+        console.log(this.teacher.id)
+        if(this.teacher.id){
+                    console.log("修改")
+
+            this.updateTeacher()
+        }else{
+            this.saveTeacher()
+        }
+
+    },
+    //新增讲师
+    saveTeacher() {
+      teacher.saveData(this.teacher).then(res => {
+        this.$message({
+          type: "success",
+          message: "添加成功!"
+        });
+      });
+      // 跳转页面
+      this.$router.push({ path: "/teacher/list" });
+    },
+    //更新讲师
+    updateTeacher() {
+      teacher.updateData(this.teacher).then(res => {
+        this.$message({
+          type: "success",
+          message: "修改成功!"
+        });
+      });
+      // 跳转页面
+      this.$router.push({ path: "/teacher/list" });
+    }
+  }
 };
 </script>
