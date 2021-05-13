@@ -37,32 +37,41 @@ import teacher from "@/api/teacher";
 export default {
   data() {
     return {
-        id:'',
+      id: "",
       teacher: {},
       saveBtnDisabled: false
     };
   },
-  created() {
-      //如果 路由url中带有id回显讲师信息
-      if(this.$route.params.id){
-          this.id = this.$route.params.id;
-          console.log(this.id);
-          teacher.getById(this.id).then(res=>{
-                this.teacher = res.data.item
-          })
-      }
+  created() {this.init()},
+  watch: {
+    $route(to, from) {
+        console.log("路由发生变化")
+        this.init()
+        }
   },
   methods: {
+    init() {
+      //如果 路由url中带有id回显讲师信息
+      if (this.$route.params.id) {
+        this.id = this.$route.params.id;
+        console.log(this.id);
+        teacher.getById(this.id).then(res => {
+          this.teacher = res.data.item;
+        });
+      } else {
+        //新增讲师 情况teacher信息
+        this.teacher = {};
+      }
+    },
     saveOrUpdate() {
-        console.log(this.teacher.id)
-        if(this.teacher.id){
-                    console.log("修改")
+      console.log(this.teacher.id);
+      if (this.teacher.id) {
+        console.log("修改");
 
-            this.updateTeacher()
-        }else{
-            this.saveTeacher()
-        }
-
+        this.updateTeacher();
+      } else {
+        this.saveTeacher();
+      }
     },
     //新增讲师
     saveTeacher() {
