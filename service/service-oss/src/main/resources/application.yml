@@ -1,0 +1,21 @@
+#服务端口号
+server:
+  port: 8002
+
+spring:
+  #应用名
+  profiles:
+    active: dev
+  #应用
+  application:
+    name: service-oss
+
+#阿里云 OSS
+#不同的服务器，地址不同
+aliyun:
+  oss:
+    file:
+      keyid: "yourEndpoint"
+      keysecret: ""
+      endpoint: ""
+      bucketname: ""
