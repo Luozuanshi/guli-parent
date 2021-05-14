@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -22,16 +23,17 @@ import org.springframework.web.multipart.MultipartFile;
  * @author luozuanshi
  * @since 2021-05-14
  */
-@Api(tags="模拟用户登录")
+@Api(tags="上传文件管理")
 @RestController
-@RequestMapping("/oss")
+@RequestMapping("ossservice/oss")
 @CrossOrigin
 public class FileController {
     @Autowired
     FileService fileService;
 
     @ApiOperation("上传文件")
-    @ApiImplicitParams(@ApiImplicitParam(name = "file",value = "文件",required = true,paramType ="form"))
+//    @ApiImplicitParams(@ApiImplicitParam(name = "file",value = "文件",required = true,paramType ="formData",dataType = "file"))
+    @PostMapping("upload")
     public R uploadFile(MultipartFile file){
         String url = fileService.upload(file);
         return R.ok().data("url",url);
