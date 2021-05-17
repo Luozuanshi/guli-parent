@@ -22,7 +22,7 @@ public class SubjectAdminController {
 
     //添加课程分类
     @ApiOperation(value = "Excel批量导入")
-    @PostMapping("addSubject")
+    @PostMapping("import")
     public R addSubject(MultipartFile file) {
         //1 获取上传的excel文件 MultipartFile
         //返回错误提示信息
