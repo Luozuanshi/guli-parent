@@ -33,7 +33,7 @@ public class Course implements Serializable {
     public static final String COURSE_NORMAL = "Normal";
 
     @ApiModelProperty(value = "课程ID")
-    @TableId(value = "id", type = IdType.ID_WORKER)
+    @TableId(value = "id", type = IdType.ID_WORKER_STR)
     private String id;
 
     @ApiModelProperty(value = "课程讲师ID")

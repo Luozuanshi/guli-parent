@@ -28,7 +28,7 @@ public class CourseController {
     private CourseService courseService;
 
     @ApiOperation(value = "新增课程")
-    @PostMapping("save-course-info")
+    @PostMapping("saveCourseInfo")
     public R saveCourseInfo(
             @ApiParam(name = "CourseInfoForm", value = "课程基本信息", required = true)
             @RequestBody CourseInfoForm courseInfoForm){
