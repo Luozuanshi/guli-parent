@@ -39,6 +39,13 @@ export default {
       method: 'put',
       data: teacher // json格式传输
     })
+  },
+  // 获取讲师列表
+  getTeacherList() {
+    return request({
+      url: `/eduservice/teacher`,
+      method: 'get'
+    })
   }
 
 }

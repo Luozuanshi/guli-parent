@@ -15,7 +15,6 @@
 
       <!-- 所属分类 TODO -->
 
-      <!-- 课程讲师 TODO -->
       <!-- 课程讲师 -->
       <el-form-item label="课程讲师">
         <el-select v-model="courseInfo.teacherId" placeholder="请选择">
@@ -60,31 +59,29 @@
   </div>
 </template>
 <script>
-import course from "@/api/course"
-import teacher from "@/api/teacher"
+import course from "@/api/course";
+import teacher from "@/api/teacher";
 
 export default {
   data() {
     return {
-      courseInfo: {},//封装表单数据对象
+      courseInfo: {}, //封装表单数据对象
       saveBtnDisabled: false, // 保存按钮是否禁用
-      teacherList:[]//讲师信息集合
+      teacherList: [] //讲师信息集合
     };
   },
 
   created() {
-      this.getAllTeacherList()
+    this.getAllTeacherList();
   },
 
   methods: {
-      //查询所有讲师
-      getAllTeacherList(){
-          teacher.getAllTeacher()
-          .then(response=>{
-              this.teacherList = response.data.items
-          })
-
-      },
+    //查询所有讲师
+    getAllTeacherList() {
+      teacher.getTeacherList().then(response => {
+        this.teacherList = response.data.items;
+      });
+    },
 
     next() {
       course.saveCourseInfo(this.courseInfo).then(response => {
